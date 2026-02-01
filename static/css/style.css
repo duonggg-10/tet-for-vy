@@ -1,0 +1,132 @@
+/* Cấu hình chung */
+body, html { 
+    margin: 0; padding: 0; overflow: hidden; 
+    font-family: 'Quicksand', sans-serif;
+    /* Ngăn kéo trang trên mobile */
+    overscroll-behavior: none; 
+    touch-action: none; 
+}
+
+/* Video Background */
+.video-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100dvh; z-index: -1;
+    background: #fad0c4;
+}
+#myVideo {
+    position: absolute; right: 0; bottom: 0; min-width: 100%; min-height: 100%;
+    width: auto; height: auto; object-fit: cover;
+}
+.overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 230, 230, 0.3);
+}
+
+/* Intro Screen */
+#intro {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100dvh;
+    background: radial-gradient(circle, #ffe3e3 0%, #ff9a9e 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 999; transition: opacity 1s;
+}
+
+#typing-text { 
+    font-family: 'Dancing Script', cursive; font-size: 2.5rem; 
+    color: #d63384; text-shadow: 2px 2px 0px #fff; text-align: center;
+}
+
+/* Nút bấm chung */
+button {
+    padding: 12px 30px; border: none; border-radius: 50px;
+    background: #fff; color: #ff6b81; font-weight: bold; font-size: 1.2rem; cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4); transition: transform 0.1s, background 0.2s;
+    /* Tối ưu chạm trên mobile */
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+}
+button:active { transform: scale(0.95); background: #ffe4e6; }
+.hidden { display: none !important; }
+
+/* Main Screen */
+#main-content { position: relative; width: 100%; height: 100dvh; }
+
+/* Game Canvas & Dot Sight */
+#game-canvas { 
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+    cursor: crosshair; /* Tâm nhắm cho PC */
+    z-index: 5;
+}
+
+/* Hiệu ứng Click/Touch (Visual Feedback) */
+.click-effect {
+    position: absolute; pointer-events: none;
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 3px solid #fff; background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.4s linear forwards;
+    z-index: 99;
+}
+@keyframes ripple {
+    0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+.center-box {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    text-align: center; color: #fff; pointer-events: none; width: 95%; z-index: 10;
+}
+.buttons-container { pointer-events: auto; margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;}
+.action-btn { background: linear-gradient(45deg, #ff9a9e, #fad0c4); color: white; border: 2px solid white; font-size: 1rem; padding: 10px 20px;}
+
+.glowing-text {
+    font-family: 'Dancing Script', cursive; font-size: 3rem; color: #ff0055;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 1), 0 0 20px #ff9a9e; margin-bottom: 10px;
+}
+/* Responsive Text */
+@media (max-width: 480px) {
+    .glowing-text { font-size: 2.2rem; }
+    #typing-text { font-size: 1.8rem; }
+}
+
+.info-box {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 15px; border-radius: 15px;
+    display: inline-block; margin-bottom: 15px;
+    color: #d63384; font-weight: bold; font-size: 0.9rem;
+    box-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+}
+.highlight { color: #ff4757; font-size: 1.1em; }
+.guide-text { color: #444; font-style: italic; background: rgba(255,255,255,0.7); display: inline-block; padding: 5px 10px; border-radius: 10px; font-size: 0.85rem;}
+
+/* SweetAlert Custom */
+.swal2-popup { border-radius: 20px !important; border: 4px solid #ffccd5; background: #fff0f3 !important; font-size: 0.9rem;}
+.swal2-title { color: #ff6b81 !important; font-family: 'Dancing Script', cursive; }
+
+/* Modal Lá Thư */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100dvh;
+    background: rgba(0,0,0,0.6); z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+}
+.letter-content {
+    position: relative; width: 90%; max-width: 500px;
+    max-height: 80dvh; overflow-y: auto; /* Cho phép cuộn nếu thư dài trên mobile */
+    animation: zoomIn 0.3s ease;
+}
+.paper {
+    background: #fffbe7; 
+    padding: 30px 20px; border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    font-family: 'Dancing Script', cursive; 
+    font-size: 1.2rem; line-height: 1.5; color: #5a3e3e;
+    background-image: radial-gradient(#d3c0c0 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+.close-modal {
+    position: absolute; top: -10px; right: -10px;
+    background: #ff6b81; color: white; width: 30px; height: 30px;
+    text-align: center; line-height: 30px; border-radius: 50%;
+    cursor: pointer; font-weight: bold; font-family: sans-serif;
+    border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.sign { text-align: right; margin-top: 20px; font-weight: bold; }
+
+@keyframes zoomIn { from {transform: scale(0.5); opacity: 0;} to {transform: scale(1); opacity: 1;} }

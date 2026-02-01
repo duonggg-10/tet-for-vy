@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Vợ Iu ❤️ - Happy New Year</title>
+    <!-- Font chữ -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Popup Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+    <!-- VIDEO NỀN (Tự động nhận nếu có file) -->
+    <div class="video-bg">
+        <!-- 'playsinline' là BẮT BUỘC để iOS không tự phóng to video full màn hình -->
+        <video autoplay muted loop playsinline id="myVideo">
+            <source src="{{ url_for('static', filename='videos/bg-video.mp4') }}" type="video/mp4">
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- MÀN HÌNH CHỜ (TYPING) -->
+    <div id="intro">
+        <h1 id="typing-text"></h1>
+        <button id="start-btn" class="hidden">Vào chơi với Dương nè ❤️</button>
+    </div>
+
+    <!-- MÀN HÌNH CHÍNH (GAME + INFO) -->
+    <div id="main-content" class="hidden">
+        <canvas id="game-canvas"></canvas>
+        
+        <div class="center-box">
+            <h2 class="glowing-text">Tết của Dương & Vy</h2>
+            
+            <!-- ĐẾM NGÀY YÊU -->
+            <div class="info-box">
+                <p>Đã chịu đựng nhau: <span id="days-count" class="highlight">...</span> ngày</p>
+                <p>Sắp Giao Thừa rùi: <span id="countdown" class="highlight">...</span></p>
+            </div>
+
+            <p class="guide-text">🌸 Chạm vào bao Lì Xì đang rơi đi Bé! 🌸</p>
+            
+            <!-- CÁC NÚT CHỨC NĂNG -->
+            <div class="buttons-container">
+                <button id="secret-btn" class="action-btn">🎁 Bí mật "động trời"</button>
+                <button id="letter-btn" class="action-btn">💌 Thư tình sến súa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LÁ THƯ TÌNH -->
+    <div id="letter-modal" class="modal hidden">
+        <div class="letter-content">
+            <span class="close-modal">&times;</span>
+            <div class="paper">
+                <h3>Gửi Nấm lùn của anh,</h3>
+                <p id="letter-text">
+                    <!-- Nội dung thư sẽ được load từ JS -->
+                </p>
+                <div class="sign">-- Dương 2010 --</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ASSETS CHO CANVAS (Load ẩn) -->
+    <img id="img-dao" src="https://i.imgur.com/4Qh8m9s.png" class="hidden">
+    <img id="img-mai" src="https://i.imgur.com/Wt2j8hS.png" class="hidden">
+    <img id="img-lixi" src="https://i.imgur.com/w1i2h9d.png" class="hidden">
+
+    <!-- NHẠC NỀN -->
+    <audio id="bg-music" loop>
+        <source src="{{ url_for('static', filename='music/bg-music.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <!-- SCRIPTS -->
+    <!-- Bỏ Three.js, dùng Canvas thuần cho game nhẹ mượt -->
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
